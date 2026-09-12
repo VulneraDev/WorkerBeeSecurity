@@ -1,3 +1,3 @@
-"""WorkerBee Security package."""
+"""Cowrie log analysis and IOC enrichment."""
 
 __version__ = "0.1.0"

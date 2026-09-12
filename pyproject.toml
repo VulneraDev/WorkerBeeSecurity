@@ -7,27 +7,42 @@ name = "workerbee-security"
 version = "0.1.0"
 description = "Turn Cowrie honeypot logs into analyst-ready incident reports"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.9"
 license = "Apache-2.0"
 authors = []
 classifiers = [
-  "Development Status :: 2 - Pre-Alpha",
+  "Development Status :: 3 - Alpha",
   "Environment :: Console",
   "Intended Audience :: Information Technology",
   "License :: OSI Approved :: Apache Software License",
   "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
   "Topic :: Security",
 ]
+keywords = ["cowrie", "honeypot", "ioc", "security", "threat-intelligence"]
 
 [project.scripts]
 workerbee = "workerbee_security.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/VulneraDev/WorkerBeeSecurity"
+Issues = "https://github.com/VulneraDev/WorkerBeeSecurity/issues"
+Repository = "https://github.com/VulneraDev/WorkerBeeSecurity.git"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/workerbee_security"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["src"]
 
 [tool.ruff]
 line-length = 100
-target-version = "py310"
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "B", "SIM"]
