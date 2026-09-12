@@ -4,6 +4,8 @@ import json
 from pathlib import Path
 from typing import Any, Dict, Iterable, List
 
+from .dashboard import dashboard
+
 
 def _cell(value: Any) -> str:
     if value is None:
@@ -281,7 +283,11 @@ def write_reports(report: Dict[str, Any], output: str, formats: Iterable[str]) -
     written: List[Path] = []
 
     for report_format in dict.fromkeys(formats):
-        if report_format == "json":
+        if report_format == "html":
+            path = output_path / "workerbee-report.html"
+            path.write_text(dashboard(report), encoding="utf-8")
+            written.append(path)
+        elif report_format == "json":
             path = output_path / "workerbee-report.json"
             path.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
             written.append(path)

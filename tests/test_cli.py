@@ -17,6 +17,7 @@ class CliTests(unittest.TestCase):
                 code = run(["analyze", str(FIXTURE), "--output", directory])
             self.assertEqual(code, 0)
             self.assertTrue((Path(directory) / "workerbee-report.md").is_file())
+            self.assertTrue((Path(directory) / "workerbee-report.html").is_file())
             self.assertTrue((Path(directory) / "workerbee-report.json").is_file())
             report = json.loads((Path(directory) / "workerbee-report.json").read_text())
             self.assertEqual(report["sessions"][0]["credentials"][0]["password"], "toor")

@@ -11,6 +11,8 @@ compact investigation package. It reconstructs sessions, extracts observables,
 records attempted credentials, and exports reports that can move directly into an
 analyst workflow.
 
+![WorkerBee Security HTML dashboard](docs/images/workerbee-dashboard.jpg)
+
 ## Features
 
 - Parses newline-delimited `cowrie.json` events
@@ -18,7 +20,7 @@ analyst workflow.
 - Ranks usernames, passwords, and credential pairs by frequency and success rate
 - Identifies brute-force, password-spray, mixed, repeated, and low-volume sources
 - Extracts IPv4, IPv6, domains, URLs, MD5, SHA-1, and SHA-256 indicators
-- Produces Markdown, JSON, indicator CSV, and session CSV reports
+- Produces a self-contained HTML dashboard plus Markdown, JSON, and CSV reports
 - Includes attempted usernames and passwords for credential-pattern analysis
 - Skips malformed records with useful warnings or fails fast in strict mode
 - Optionally enriches public observables with AbuseIPDB and VirusTotal
@@ -47,6 +49,7 @@ The default output directory is `workerbee-report/`:
 workerbee-report/
 ├── workerbee-credentials.csv
 ├── workerbee-indicators.csv
+├── workerbee-report.html
 ├── workerbee-report.json
 ├── workerbee-report.md
 └── workerbee-sessions.csv
@@ -57,9 +60,19 @@ Choose formats or an output directory:
 ```bash
 workerbee analyze cowrie.json \
   --output reports/case-001 \
+  --format html \
   --format markdown \
   --format json
 ```
+
+Generate a dashboard from the bundled demonstration data:
+
+```bash
+workerbee analyze examples/cowrie.demo.json --format html --output reports/demo
+```
+
+Open `reports/demo/workerbee-report.html` in any modern browser. The dashboard is a
+single offline file with no CDN assets or external requests.
 
 Read from standard input:
 
@@ -133,8 +146,9 @@ The JSON report is the canonical output. It includes:
 - indicators with first/last seen timestamps and session references;
 - bounded enrichment results and parse warnings.
 
-The Markdown report is intended for quick review. The CSV files are convenient for
-spreadsheets, notebooks, and SIEM imports.
+The HTML dashboard is intended for investigation and presentation, while Markdown is
+useful for quick review. The CSV files work well with spreadsheets, notebooks, and SIEM
+imports.
 
 ## Development
 

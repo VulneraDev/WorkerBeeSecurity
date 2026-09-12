@@ -26,7 +26,7 @@ def parser() -> argparse.ArgumentParser:
         "-f",
         "--format",
         action="append",
-        choices=("markdown", "json", "csv"),
+        choices=("html", "markdown", "json", "csv"),
         dest="formats",
         help="output format; repeat to select multiple (default: all)",
     )
@@ -78,7 +78,9 @@ def run(argv: Optional[List[str]] = None) -> int:
             report["summary"]["enrichment_queries"] = enrich(
                 report["indicators"], args.enrich, args.max_enrich, args.timeout
             )
-        paths = write_reports(report, args.output, args.formats or ("markdown", "json", "csv"))
+        paths = write_reports(
+            report, args.output, args.formats or ("html", "markdown", "json", "csv")
+        )
     except (CowrieParseError, EnrichmentError, OSError, ValueError) as exc:
         print(f"workerbee: {exc}", file=sys.stderr)
         return 2
