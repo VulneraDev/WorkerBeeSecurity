@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "workerbee-security"
-version = "0.1.1"
+version = "0.2.0"
 description = "Turn Cowrie honeypot logs into analyst-ready incident reports"
 readme = "README.md"
 requires-python = ">=3.9"

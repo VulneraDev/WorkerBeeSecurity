@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 from typing import Any, Dict, Optional
 
 from . import __version__
+from .credentials import summarize_credentials
 from .indicators import extract_indicators
 from .models import CowrieEvent, ParseResult
 
@@ -125,6 +126,7 @@ def analyze(result: ParseResult, show_credentials: bool = True) -> Dict[str, Any
     sessions = [_finalize_session(session) for session in session_map.values()]
     sessions.sort(key=lambda item: (item["first_seen"] or "", item["id"] or ""))
     indicators = extract_indicators(result.events)
+    credentials = summarize_credentials(result.events, show_passwords=show_credentials)
     sources = Counter(event.src_ip for event in result.events if event.src_ip)
     generated = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
@@ -141,10 +143,13 @@ def analyze(result: ParseResult, show_credentials: bool = True) -> Dict[str, Any
             "parse_warnings": len(result.warnings),
             "commands": sum(len(session["commands"]) for session in sessions),
             "downloads": sum(len(session["downloads"]) for session in sessions),
+            "credential_attempts": credentials["attempts"],
+            "credential_successes": credentials["successes"],
         },
         "event_counts": dict(sorted(event_counts.items())),
         "top_sources": [{"ip": ip, "events": count} for ip, count in sources.most_common(20)],
         "sessions": sessions,
+        "credential_intelligence": credentials,
         "indicators": indicators,
         "warnings": [warning.as_dict() for warning in result.warnings],
     }

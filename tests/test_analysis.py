@@ -15,11 +15,16 @@ class AnalysisTests(unittest.TestCase):
         self.assertEqual(report["summary"]["sessions"], 1)
         self.assertEqual(report["summary"]["commands"], 1)
         self.assertEqual(report["summary"]["downloads"], 1)
+        self.assertEqual(report["summary"]["credential_attempts"], 2)
+        self.assertEqual(report["summary"]["credential_successes"], 1)
 
         session = report["sessions"][0]
         self.assertEqual(session["severity"], "high")
         self.assertEqual(session["duration_seconds"], 10.0)
         self.assertEqual(session["credentials"][0]["password"], "toor")
+        self.assertEqual(
+            report["credential_intelligence"]["top_passwords"][0]["password"], "admin123"
+        )
 
         indicators = {(item["type"], item["value"]) for item in report["indicators"]}
         self.assertIn(("ip", "203.0.113.42"), indicators)
@@ -32,6 +37,7 @@ class AnalysisTests(unittest.TestCase):
         report = analyze(parse_file(str(FIXTURE)), show_credentials=False)
         passwords = [item["password"] for item in report["sessions"][0]["credentials"]]
         self.assertEqual(passwords, ["<redacted>", "<redacted>"])
+        self.assertEqual(report["credential_intelligence"]["top_passwords"], [])
 
 
 if __name__ == "__main__":

@@ -15,6 +15,8 @@ analyst workflow.
 
 - Parses newline-delimited `cowrie.json` events
 - Reconstructs logins, commands, downloads, and session timelines
+- Ranks usernames, passwords, and credential pairs by frequency and success rate
+- Identifies brute-force, password-spray, mixed, repeated, and low-volume sources
 - Extracts IPv4, IPv6, domains, URLs, MD5, SHA-1, and SHA-256 indicators
 - Produces Markdown, JSON, indicator CSV, and session CSV reports
 - Includes attempted usernames and passwords for credential-pattern analysis
@@ -43,6 +45,7 @@ The default output directory is `workerbee-report/`:
 
 ```text
 workerbee-report/
+├── workerbee-credentials.csv
 ├── workerbee-indicators.csv
 ├── workerbee-report.json
 ├── workerbee-report.md
@@ -80,6 +83,21 @@ workerbee analyze cowrie.json --redact-credentials
 Captured credentials can originate from leaked or reused credential lists. Keep raw
 reports access-controlled and never test captured passwords against other systems.
 
+## Credential intelligence
+
+WorkerBee ranks attempted usernames, passwords, and credential pairs with attempt
+counts, successful logins, success rates, source counts, and first/last-seen times.
+Each source is classified from its observed login pattern:
+
+- `brute_force`: at least three attempts against one username with multiple passwords
+- `password_spray`: at least three attempts using one password across multiple usernames
+- `mixed`: at least three attempts with multiple usernames and passwords
+- `repeated`: at least three repeats of one credential pair
+- `low_volume`: fewer than three attempts
+
+Password rankings and credential-pair rankings are omitted when
+`--redact-credentials` is selected. Counts and source classifications remain available.
+
 ## Passive enrichment
 
 Enrichment is disabled by default. When enabled, selected indicators are sent to the
@@ -111,6 +129,7 @@ The JSON report is the canonical output. It includes:
 - event and observable counts;
 - the most active source addresses;
 - normalized sessions with authentication attempts, commands, and downloads;
+- credential rankings and source-pattern classifications;
 - indicators with first/last seen timestamps and session references;
 - bounded enrichment results and parse warnings.
 

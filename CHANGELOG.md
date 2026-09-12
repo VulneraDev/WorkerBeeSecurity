@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0 - 2026-09-12
+
+- Rank usernames, passwords, and credential pairs.
+- Calculate credential success rates, source counts, and observation windows.
+- Classify source behavior as brute force, password spray, mixed, repeated, or low volume.
+- Export credential intelligence to Markdown, JSON, and CSV.
+
 ## 0.1.1 - 2026-09-12
 
 - Include attempted passwords in reports by default.
