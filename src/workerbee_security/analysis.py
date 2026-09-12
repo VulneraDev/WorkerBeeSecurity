@@ -111,7 +111,7 @@ def _finalize_session(session: Dict[str, Any]) -> Dict[str, Any]:
     return session
 
 
-def analyze(result: ParseResult, show_credentials: bool = False) -> Dict[str, Any]:
+def analyze(result: ParseResult, show_credentials: bool = True) -> Dict[str, Any]:
     session_map: Dict[str, Dict[str, Any]] = {}
     event_counts: Counter = Counter()
 

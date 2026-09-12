@@ -42,7 +42,18 @@ def parser() -> argparse.ArgumentParser:
     analyze_command.add_argument("--limit", type=int)
     analyze_command.add_argument("--max-line-bytes", type=int, default=2_000_000)
     analyze_command.add_argument("--strict", action="store_true")
-    analyze_command.add_argument("--show-credentials", action="store_true")
+    analyze_command.add_argument(
+        "--redact-credentials",
+        action="store_true",
+        help="replace attempted passwords with <redacted> in reports",
+    )
+    analyze_command.add_argument(
+        "--show-credentials",
+        action="store_false",
+        dest="redact_credentials",
+        help=argparse.SUPPRESS,
+    )
+    analyze_command.set_defaults(redact_credentials=False)
     return root
 
 
@@ -62,7 +73,7 @@ def run(argv: Optional[List[str]] = None) -> int:
             limit=args.limit,
             max_line_bytes=args.max_line_bytes,
         )
-        report = analyze(result, show_credentials=args.show_credentials)
+        report = analyze(result, show_credentials=not args.redact_credentials)
         if args.enrich:
             report["summary"]["enrichment_queries"] = enrich(
                 report["indicators"], args.enrich, args.max_enrich, args.timeout

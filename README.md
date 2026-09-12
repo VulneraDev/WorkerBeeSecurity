@@ -8,7 +8,7 @@ Security telemetry in. Analyst-ready intelligence out. 🐝
 
 WorkerBee Security is an offline-first CLI that turns Cowrie JSON logs into a
 compact investigation package. It reconstructs sessions, extracts observables,
-redacts captured passwords, and exports reports that can move directly into an
+records attempted credentials, and exports reports that can move directly into an
 analyst workflow.
 
 ## Features
@@ -17,7 +17,7 @@ analyst workflow.
 - Reconstructs logins, commands, downloads, and session timelines
 - Extracts IPv4, IPv6, domains, URLs, MD5, SHA-1, and SHA-256 indicators
 - Produces Markdown, JSON, indicator CSV, and session CSV reports
-- Redacts captured passwords unless explicitly requested
+- Includes attempted usernames and passwords for credential-pattern analysis
 - Skips malformed records with useful warnings or fails fast in strict mode
 - Optionally enriches public observables with AbuseIPDB and VirusTotal
 - Uses only the Python standard library at runtime
@@ -70,8 +70,15 @@ Stop on the first malformed event:
 workerbee analyze cowrie.json --strict
 ```
 
-Passwords captured by Cowrie appear as `<redacted>` in reports. Use
-`--show-credentials` only when the report destination is access-controlled.
+Attempted usernames and passwords are included in reports by default. Redact passwords
+when creating a report for wider distribution:
+
+```bash
+workerbee analyze cowrie.json --redact-credentials
+```
+
+Captured credentials can originate from leaked or reused credential lists. Keep raw
+reports access-controlled and never test captured passwords against other systems.
 
 ## Passive enrichment
 

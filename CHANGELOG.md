@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1 - 2026-09-12
+
+- Include attempted passwords in reports by default.
+- Add `--redact-credentials` for shareable reports.
+
 ## 0.1.0 - 2026-09-12
 
 - Parse newline-delimited Cowrie JSON logs.

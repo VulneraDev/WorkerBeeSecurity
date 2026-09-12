@@ -19,7 +19,7 @@ class AnalysisTests(unittest.TestCase):
         session = report["sessions"][0]
         self.assertEqual(session["severity"], "high")
         self.assertEqual(session["duration_seconds"], 10.0)
-        self.assertEqual(session["credentials"][0]["password"], "<redacted>")
+        self.assertEqual(session["credentials"][0]["password"], "toor")
 
         indicators = {(item["type"], item["value"]) for item in report["indicators"]}
         self.assertIn(("ip", "203.0.113.42"), indicators)
@@ -28,10 +28,10 @@ class AnalysisTests(unittest.TestCase):
         self.assertIn(("sha256", "a" * 64), indicators)
         self.assertNotIn(("ip", "192.0.2.10"), indicators)
 
-    def test_credentials_are_opt_in(self) -> None:
-        report = analyze(parse_file(str(FIXTURE)), show_credentials=True)
+    def test_credentials_can_be_redacted(self) -> None:
+        report = analyze(parse_file(str(FIXTURE)), show_credentials=False)
         passwords = [item["password"] for item in report["sessions"][0]["credentials"]]
-        self.assertEqual(passwords, ["toor", "admin123"])
+        self.assertEqual(passwords, ["<redacted>", "<redacted>"])
 
 
 if __name__ == "__main__":
